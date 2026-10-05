@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Carte de la honte : __N__ preuves que LFI est toujours...</title>
+<meta name="description" content="__DESC__">
+<meta property="og:title" content="Carte de la honte : __N__ preuves que LFI est...">
+<meta property="og:description" content="__N__ preuves que LFI est toujours...">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<style>
+  :root {
+    --ink: #111;
+    --muted: #666;
+    --line: #00000022;
+    --link: #2563eb;
+    --link-hover: #1e40af;
+    --visited: #9333ea;
+    --panel: #fff;
+    --map-bg: #ddd;
+    --switch-off: #e4e4e7;
+    --switch-on: #006fee;
+    --select: rgba(246, 233, 55, 1);
+    --outline: rgba(35, 35, 35, 1);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; }
+  body {
+    font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+    color: var(--ink);
+    background: var(--map-bg);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+  }
+  #map { position: fixed; inset: 0; background: var(--map-bg); }
+  .leaflet-container { font: inherit; background: var(--map-bg); }
+
+  /* Panneau : bandeau bas sur mobile, carte flottante à gauche sur desktop */
+  #panel {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 1000;
+    max-height: 45%; overflow-y: auto; overscroll-behavior: contain;
+    background: var(--panel); border-radius: 8px 8px 0 0;
+    box-shadow: 0 -2px 14px rgba(0,0,0,.18);
+    overflow-wrap: anywhere;
+  }
+  @media (min-width: 768px) {
+    #panel {
+      left: 50px; top: 50px; right: auto; bottom: auto;
+      width: calc(100% - 100px); max-width: 600px; max-height: 90vh;
+      border-radius: 8px; box-shadow: 0 2px 18px rgba(0,0,0,.18);
+    }
+  }
+  .inner { padding: 12px 8px 16px; }
+  @media (min-width: 768px) { .inner { padding: 20px 16px; } }
+
+  h1 { font-size: 1.15rem; font-weight: 700; line-height: 1.2; margin: 0 0 16px; }
+  @media (min-width: 768px) { h1 { font-size: 3rem; font-weight: 400; line-height: 1.08; margin-bottom: 24px; } }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 24px; }
+  @media (min-width: 768px) { .chips { gap: 8px; } }
+  .chip {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    border: 0; border-radius: 9999px; padding: 4px 12px;
+    font-family: inherit; font-weight: 700; font-size: 12px; line-height: 1.35;
+    color: #fff; cursor: pointer;
+  }
+  @media (min-width: 768px) { .chip { font-size: 14px; } }
+  .chip[disabled] { opacity: .32; cursor: default; }
+  .chip .x { display: none; width: 14px; height: 14px; }
+  .chip[aria-pressed="true"] .x { display: inline-block; }
+  .chips.filtering .chip[aria-pressed="false"]:not([disabled]) { opacity: .55; }
+  .chip:focus-visible, .sw input:focus-visible + .track, .btn-close:focus-visible, .circo-link:focus-visible {
+    outline: 2px solid var(--switch-on); outline-offset: 2px;
+  }
+
+  .search { position: relative; }
+  .search svg { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); pointer-events: none; }
+  .search input {
+    width: 100%; border: 1px solid #ccc; border-radius: 9999px; background: #fff;
+    padding: 8px 24px 8px 36px; font: inherit; font-size: 16px; color: var(--ink);
+  }
+  .search input:focus { outline: none; border-color: #888; }
+  .suggest {
+    display: none; background: #fff; border: 1px solid #ccc; border-radius: 8px;
+    margin-top: 4px; max-height: 200px; overflow-y: auto;
+  }
+  .suggest.open { display: block; }
+  .suggest button {
+    display: block; width: 100%; text-align: left; border: 0; background: none;
+    padding: 8px 16px; font: inherit; font-size: 15px; color: var(--muted); cursor: pointer;
+  }
+  .suggest button:hover, .suggest button.active { background: #f2f9fc; color: #333; }
+  .suggest .none { padding: 8px 16px; color: var(--muted); font-size: 15px; }
+
+  .sw { display: inline-flex; align-items: center; gap: 8px; margin-top: 16px; cursor: pointer; user-select: none; }
+  .sw input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+  .track {
+    position: relative; width: 48px; height: 28px; border-radius: 9999px;
+    background: var(--switch-off); transition: background .2s; flex-shrink: 0;
+  }
+  .track::after {
+    content: ""; position: absolute; top: 4px; left: 4px; width: 20px; height: 20px;
+    border-radius: 50%; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.25); transition: transform .2s;
+  }
+  .sw input:checked + .track { background: var(--switch-on); }
+  .sw input:checked + .track::after { transform: translateX(20px); }
+
+  hr { border: 0; border-top: 1px solid #e5e5e5; margin: 24px 0 0; }
+
+  .entry { margin-top: 16px; padding-bottom: 24px; border-bottom: 1px solid var(--line); }
+  @media (min-width: 768px) { .entry { margin-top: 24px; } }
+  .entry h2 { margin: 0 0 8px; font-size: 1.5rem; font-weight: 400; line-height: 1.3; }
+  .circo-link {
+    font: inherit; color: inherit; background: none; border: 0; padding: 0; text-align: left;
+    text-decoration: underline; cursor: pointer;
+  }
+  .circo-link:hover { color: var(--link-hover); }
+  .circo-plain { font: inherit; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+  .tag { display: inline-block; border-radius: 9999px; padding: 4px 12px; font-size: 14px; font-weight: 700; color: #fff; line-height: 1.35; }
+  .entry h3 { font-size: 1.25rem; font-weight: 700; margin: 0 0 4px; line-height: 1.3; }
+  .role { color: var(--muted); font-size: 14px; margin: 0 0 12px; }
+  .entry p.t { margin: 8px 0 0; }
+  .sources { margin-top: 24px; }
+  .sources b { display: block; }
+  .sources a {
+    display: block; margin-top: 8px; font-size: 12px; color: var(--link); text-decoration: underline;
+    word-break: break-all;
+  }
+  .sources a:hover { color: var(--link-hover); }
+  .sources a:visited { color: var(--visited); }
+
+  .detail-head { display: flex; align-items: flex-start; gap: 12px; }
+  .detail-head h2 { flex: 1; margin: 0; font-size: 1.5rem; font-weight: 400; line-height: 1.3; }
+  .btn-close { border: 0; background: none; padding: 2px; cursor: pointer; color: var(--ink); line-height: 0; }
+  .detail .entry { margin-top: 8px; }
+  .detail .entry:last-child { border-bottom: 0; }
+
+  .empty { color: var(--muted); margin-top: 24px; }
+  .about { margin-top: 24px; font-size: 13px; color: var(--muted); }
+  .about p { margin: 8px 0 0; }
+  .about a { color: inherit; }
+  .count { color: var(--muted); font-size: 14px; margin-top: 16px; }
+
+  .leaflet-tooltip.tt { font: inherit; font-size: 13px; padding: 4px 8px; }
+  .leaflet-control-attribution { font-size: 10px; }
+  /* Évite les fines lignes blanches entre tuiles aux niveaux de zoom fractionnaires (Chromium). */
+  img.leaflet-tile { mix-blend-mode: plus-lighter; }
+  .views { display: flex; flex-direction: column; background: #fff; }
+  .views button {
+    border: 0; border-bottom: 1px solid #ccc; background: #fff; padding: 6px 10px;
+    font: inherit; font-size: 13px; font-weight: 700; color: #222; cursor: pointer; text-align: center;
+  }
+  .views button:last-child { border-bottom: 0; }
+  .views button:hover { background: #f4f4f4; }
+</style>
+</head>
+<body>
+<div id="map" role="region" aria-label="Carte des circonscriptions"></div>
+
+<aside id="panel" aria-live="polite">
+  <div class="inner">
+    <div id="home">
+      <h1><span id="total">__N__</span> preuves que LFI est toujours...</h1>
+      <div class="chips" id="chips" role="group" aria-label="Filtrer par catégorie"></div>
+
+      <div class="search">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#777" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg>
+        <input id="q" type="text" autocomplete="off" placeholder="Circonscription ou candidat(e)" aria-label="Rechercher une circonscription ou un(e) candidat(e)" aria-controls="suggest" aria-expanded="false">
+        <div class="suggest" id="suggest" role="listbox"></div>
+      </div>
+
+      <label class="sw">
+        <input type="checkbox" id="onlyElus" role="switch">
+        <span class="track" aria-hidden="true"></span>
+        <span>Afficher uniquement les <span id="nElus"></span> élu(e)s</span>
+      </label>
+
+      <hr>
+      <div id="list"></div>
+
+      <div class="about">
+        <p><b>Méthode.</b> Sur le modèle de la <a href="https://cartedelahonte.github.io/" target="_blank" rel="noopener noreferrer">Carte de la honte</a> consacrée au RN, avec des catégories adaptées à LFI, appliquées aux candidat(e)s investi(e)s par La France insoumise aux législatives (titulaires et suppléant(e)s, élu(e)s ou non) et à quelques responsables nationaux du mouvement. Chaque fiche ne reprend que des faits publiés par la presse, avec ses sources.</p>
+        <p>Une enquête, une plainte ou une mise en examen n'est pas une condamnation : les personnes concernées sont présumées innocentes tant qu'elles n'ont pas été définitivement jugées. Situation judiciaire à jour au __DATE__ d'après les sources citées.</p>
+        <p>Contours des circonscriptions : data.gouv.fr (Licence Ouverte 2.0).</p>
+      </div>
+    </div>
+
+    <div id="detail" class="detail" hidden></div>
+  </div>
+</aside>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+const CATS = [
+  { k: "anti-police", c: "rgba(182,46,114,1)" },
+  { k: "anti-presse", c: "rgba(208,197,95,1)" },
+  { k: "bordélisateur", c: "rgba(102,204,0,1)" },
+  { k: "complaisant avec le Hamas", c: "rgba(36,25,191,1)" },
+  { k: "complaisant avec les dictatures", c: "rgba(255,71,1,1)" },
+  { k: "complotiste", c: "rgba(35,35,35,1)" },
+  { k: "raciste et antisémite", c: "rgba(56,143,194,1)" },
+  { k: "sexiste", c: "rgba(209,112,56,1)" },
+  { k: "soupçonné de fraude", c: "rgba(204,17,0,1)" },
+  { k: "un peu de tout", c: "rgba(59,19,19,1)" },
+  { k: "violent", c: "rgba(36,114,48,1)" },
+];
+const MIX = "un peu de tout";
+const COLOR = Object.fromEntries(CATS.map(c => [c.k, c.c]));
+
+const DATA = /*__DATA__*/[];
+const GEO = /*__GEO__*/{};
+const DEPTS = /*__DEPTS__*/[];
+
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"']/g, ch => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[ch]));
+const norm = s => String(s).normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+const shortUrl = u => u.length > 80 ? u.slice(0, 80) + "..." : u;
+
+// Une entrée à plusieurs catégories prend la couleur « un peu de tout », comme sur la carte d'origine.
+const mainCat = e => e.cats.length > 1 ? MIX : e.cats[0];
+const hasCat = (e, k) => k === MIX ? e.cats.length > 1 : e.cats.includes(k);
+
+const state = { cat: null, onlyElus: false, open: null };
+
+// ---------- Carte ----------
+const map = L.map("map", { zoomControl: false, zoomSnap: 0.25, minZoom: 3, maxZoom: 15, worldCopyJump: true });
+L.control.zoom({ position: "topright" }).addTo(map);
+const ATTR = 'Fond © Esri, GEBCO, NOAA, National Geographic, HERE, Garmin · Circonscriptions © <a href="https://www.data.gouv.fr/datasets/contours-geographiques-des-circonscriptions-legislatives" target="_blank" rel="noopener">data.gouv.fr</a>';
+// Fond « Ocean » de l'original jusqu'au niveau 10, puis un fond gris détaillé pour les petites circonscriptions urbaines.
+L.tileLayer("https://services.arcgisonline.com/ArcGIS/rest/services/Ocean/World_Ocean_Base/MapServer/tile/{z}/{y}/{x}", {
+  maxZoom: 10, attribution: ATTR,
+}).addTo(map);
+L.tileLayer("https://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}", {
+  minZoom: 10.25, maxNativeZoom: 16, maxZoom: 15, attribution: ATTR,
+}).addTo(map);
+
+const deptLayer = L.geoJSON({ type: "FeatureCollection", features: DEPTS.map(d => ({ type: "Feature", properties: { code: d.code }, geometry: d.g })) }, {
+  interactive: false,
+  style: { color: "rgba(35,35,35,1)", weight: 1, opacity: 1, fillOpacity: 0 },
+}).addTo(map);
+// Contours simplifiés : on les masque quand on zoome sur une ville.
+map.on("zoomend", () => {
+  const show = map.getZoom() <= 10;
+  if (show && !map.hasLayer(deptLayer)) deptLayer.addTo(map).bringToBack();
+  if (!show && map.hasLayer(deptLayer)) map.removeLayer(deptLayer);
+});
+
+// Regroupe les fiches par circonscription (titulaire + suppléant(e) partagent un polygone).
+const groups = new Map();
+DATA.forEach(e => {
+  if (!e.key || !GEO[e.key]) return;
+  if (!groups.has(e.key)) groups.set(e.key, []);
+  groups.get(e.key).push(e);
+});
+
+const circoLayer = L.layerGroup().addTo(map);
+// Les circonscriptions urbaines sont invisibles à l'échelle de la France : un point les signale en vue large.
+const dotLayer = L.layerGroup();
+const DOT_MAX_ZOOM = 8.5;
+const polys = new Map();
+let highlight = null;
+
+function groupColor(list) {
+  if (state.cat) return COLOR[state.cat];
+  const cats = new Set(list.flatMap(e => e.cats));
+  return cats.size > 1 ? COLOR[MIX] : COLOR[[...cats][0]];
+}
+
+function drawCircos(visible) {
+  circoLayer.clearLayers();
+  dotLayer.clearLayers();
+  polys.clear();
+  for (const [key, all] of groups) {
+    const list = all.filter(e => visible.has(e.id));
+    if (!list.length) continue;
+    const color = groupColor(list);
+    const tip = `${esc(list[0].label)}<br><b>${list.map(e => esc(e.name)).join("<br>")}</b>`;
+    const layer = L.geoJSON(GEO[key], {
+      style: { color: "rgba(35,35,35,1)", weight: 1, opacity: 1, fillColor: color, fillOpacity: 1 },
+    });
+    layer.bindTooltip(tip, { sticky: true, className: "tt", direction: "top" });
+    layer.on("click", () => openDetail(key, false));
+    layer.addTo(circoLayer);
+    polys.set(key, layer);
+    L.circleMarker(layer.getBounds().getCenter(), { radius: 6, color: "#fff", weight: 1.5, fillColor: color, fillOpacity: 1 })
+      .bindTooltip(tip, { className: "tt", direction: "top" })
+      .on("click", () => openDetail(key, true))
+      .addTo(dotLayer);
+  }
+}
+
+function syncDots() {
+  const show = map.getZoom() < DOT_MAX_ZOOM;
+  if (show && !map.hasLayer(dotLayer)) dotLayer.addTo(map);
+  if (!show && map.hasLayer(dotLayer)) map.removeLayer(dotLayer);
+}
+map.on("zoomend", syncDots);
+
+// Raccourcis « France » / « Île-de-France », où se concentrent la plupart des fiches.
+const IDF = ["75", "77", "78", "91", "92", "93", "94", "95"];
+const ViewControl = L.Control.extend({
+  options: { position: "topright" },
+  onAdd() {
+    const box = L.DomUtil.create("div", "leaflet-bar views");
+    box.innerHTML = `<button type="button" data-v="fr">France</button><button type="button" data-v="idf">Île-de-France</button>`;
+    L.DomEvent.disableClickPropagation(box);
+    box.addEventListener("click", ev => {
+      const v = ev.target.closest("button")?.dataset.v;
+      if (v === "fr") fitFrance(true);
+      if (v === "idf") fitIdf();
+    });
+    return box;
+  },
+});
+new ViewControl().addTo(map);
+
+function fitIdf() {
+  let b = null;
+  for (const [key, layer] of polys) {
+    if (!IDF.includes(key.split("-")[0])) continue;
+    b = b ? b.extend(layer.getBounds()) : L.latLngBounds(layer.getBounds().getSouthWest(), layer.getBounds().getNorthEast());
+  }
+  if (!b) b = L.latLngBounds([[48.6, 2.0], [49.1, 2.7]]);
+  map.flyToBounds(b, { ...panelPadding(), maxZoom: 11, duration: 0.8 });
+}
+
+function setHighlight(key) {
+  if (highlight) { map.removeLayer(highlight); highlight = null; }
+  if (!key || !GEO[key]) return;
+  highlight = L.geoJSON(GEO[key], { interactive: false, style: { color: "rgba(246,233,55,1)", weight: 4, opacity: 1, fill: false } }).addTo(map);
+}
+
+// Zone de carte non couverte par le panneau ; si elle est trop étroite,
+// la carte passe en partie sous le panneau (comme sur la carte d'origine).
+function panelPadding() {
+  const p = $("#panel").getBoundingClientRect();
+  const { x: W, y: H } = map.getSize();
+  if (window.innerWidth >= 768) {
+    const left = Math.min(p.right + 24, W - 320);
+    return { paddingTopLeft: [Math.max(left, W * 0.3), 24], paddingBottomRight: [24, 24] };
+  }
+  const bottom = Math.min(p.height + 16, H - 200);
+  return { paddingTopLeft: [16, 16], paddingBottomRight: [16, Math.max(bottom, 16)] };
+}
+
+function flyTo(key) {
+  const layer = polys.get(key) || (GEO[key] && L.geoJSON(GEO[key]));
+  if (!layer) return;
+  map.flyToBounds(layer.getBounds(), { ...panelPadding(), maxZoom: 13, duration: 0.8 });
+}
+
+function fitFrance(animate) {
+  const b = [[41.4, -4.8], [51.1, 9.6]];
+  const right = $("#panel").getBoundingClientRect().right;
+  // Comme sur l'original : la Bretagne peut glisser un peu sous le panneau.
+  const pad = window.innerWidth < 768 ? panelPadding()
+    : { paddingTopLeft: [Math.max(0, right - 170), 20], paddingBottomRight: [10, 20] };
+  if (animate) map.flyToBounds(b, { ...pad, duration: 0.8 });
+  else map.fitBounds(b, pad);
+}
+
+// ---------- Panneau ----------
+function chipHTML(k, small) {
+  return `<span class="tag" style="background:${COLOR[k]}">${esc(k)}</span>`;
+}
+
+function entryHTML(e, inDetail) {
+  const hasGeo = e.key && GEO[e.key];
+  const head = inDetail ? "" : `<h2>${hasGeo
+    ? `<button class="circo-link" data-key="${esc(e.key)}" data-id="${e.id}">${esc(e.label)}</button>`
+    : `<span class="circo-plain">${esc(e.label)}</span>`}</h2>`;
+  const tags = (e.cats.length > 1 ? [MIX, ...e.cats] : e.cats).map(k => chipHTML(k)).join("");
+  return `<article class="entry" id="e-${e.id}">
+    ${head}
+    <div class="tags">${tags}</div>
+    <h3>${esc(e.name)}</h3>
+    ${e.role ? `<p class="role">${esc(e.role)}</p>` : ""}
+    ${e.paras.map(p => `<p class="t">${esc(p)}</p>`).join("")}
+    <div class="sources"><b>Sources :</b>${e.sources.map(u => `<a href="${esc(u)}" target="_blank" rel="noopener noreferrer">${esc(shortUrl(u))}</a>`).join("")}</div>
+  </article>`;
+}
+
+function visibleEntries() {
+  return DATA.filter(e => (!state.cat || hasCat(e, state.cat)) && (!state.onlyElus || e.elu));
+}
+
+function renderChips() {
+  const present = new Set(DATA.flatMap(e => e.cats.length > 1 ? [MIX, ...e.cats] : e.cats));
+  $("#chips").classList.toggle("filtering", !!state.cat);
+  $("#chips").innerHTML = CATS.map(({ k, c }) => {
+    const none = !present.has(k);
+    return `<button class="chip" style="background:${c}" data-cat="${esc(k)}" aria-pressed="${state.cat === k}" ${none ? 'disabled title="Aucun cas documenté trouvé"' : ""}>${esc(k)}<svg class="x" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>`;
+  }).join("");
+}
+
+function renderList() {
+  const vis = visibleEntries();
+  drawCircos(new Set(vis.map(e => e.id)));
+  $("#list").innerHTML = vis.length
+    ? vis.map(e => entryHTML(e, false)).join("")
+    : `<p class="empty">Aucune fiche pour ce filtre.</p>`;
+}
+
+function openDetail(key, fly) {
+  const list = DATA.filter(e => e.key === key);
+  if (!list.length) return;
+  state.open = key;
+  $("#home").hidden = true;
+  const d = $("#detail");
+  d.hidden = false;
+  d.innerHTML = `<div class="detail-head"><h2>${esc(list[0].label)}</h2>
+      <button class="btn-close" id="close" aria-label="Fermer la fiche"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+    ${list.map(e => entryHTML(e, true)).join("")}`;
+  $("#panel").scrollTop = 0;
+  setHighlight(key);
+  if (fly) flyTo(key);
+}
+
+function openEntry(id) {
+  const e = DATA.find(x => x.id === id);
+  if (!e) return;
+  if (e.key && GEO[e.key]) return openDetail(e.key, true);
+  // Fiche sans polygone (national, Français de l'étranger) : on affiche la fiche seule.
+  state.open = null;
+  $("#home").hidden = true;
+  const d = $("#detail");
+  d.hidden = false;
+  d.innerHTML = `<div class="detail-head"><h2>${esc(e.label)}</h2>
+      <button class="btn-close" id="close" aria-label="Fermer la fiche"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+    ${entryHTML(e, true)}`;
+  $("#panel").scrollTop = 0;
+  setHighlight(null);
+}
+
+function closeDetail() {
+  const key = state.open;
+  state.open = null;
+  $("#detail").hidden = true;
+  $("#detail").innerHTML = "";
+  $("#home").hidden = false;
+  setHighlight(null);
+  if (key) {
+    const el = document.querySelector(`.circo-link[data-key="${CSS.escape(key)}"]`);
+    if (el) el.scrollIntoView({ block: "center" });
+  }
+}
+
+// ---------- Recherche ----------
+const sugg = $("#suggest"), q = $("#q");
+let active = -1;
+function renderSuggest() {
+  const t = norm(q.value.trim());
+  const hits = DATA.filter(e => !t || norm(e.label + " " + e.name).includes(t));
+  active = -1;
+  sugg.innerHTML = hits.length
+    ? hits.map(e => `<button type="button" role="option" data-id="${e.id}">${esc(e.label)} - ${esc(e.name)}</button>`).join("")
+    : `<div class="none">Aucun résultat</div>`;
+  sugg.classList.add("open");
+  q.setAttribute("aria-expanded", "true");
+}
+function closeSuggest() { sugg.classList.remove("open"); q.setAttribute("aria-expanded", "false"); }
+q.addEventListener("focus", renderSuggest);
+q.addEventListener("input", renderSuggest);
+q.addEventListener("keydown", ev => {
+  const items = [...sugg.querySelectorAll("button")];
+  if (ev.key === "ArrowDown" || ev.key === "ArrowUp") {
+    ev.preventDefault();
+    if (!items.length) return;
+    active = (active + (ev.key === "ArrowDown" ? 1 : -1) + items.length) % items.length;
+    items.forEach((b, i) => b.classList.toggle("active", i === active));
+    items[active].scrollIntoView({ block: "nearest" });
+  } else if (ev.key === "Enter" && items.length) {
+    ev.preventDefault();
+    pick(+(items[Math.max(active, 0)].dataset.id));
+  } else if (ev.key === "Escape") { closeSuggest(); q.blur(); }
+});
+sugg.addEventListener("mousedown", ev => ev.preventDefault());
+sugg.addEventListener("click", ev => {
+  const b = ev.target.closest("button[data-id]");
+  if (b) pick(+b.dataset.id);
+});
+q.addEventListener("blur", () => setTimeout(closeSuggest, 120));
+function pick(id) { closeSuggest(); q.value = ""; q.blur(); openEntry(id); }
+
+// ---------- Événements ----------
+$("#chips").addEventListener("click", ev => {
+  const b = ev.target.closest(".chip");
+  if (!b || b.disabled) return;
+  state.cat = state.cat === b.dataset.cat ? null : b.dataset.cat;
+  renderChips();
+  renderList();
+});
+$("#onlyElus").addEventListener("change", ev => { state.onlyElus = ev.target.checked; renderList(); });
+$("#list").addEventListener("click", ev => {
+  const b = ev.target.closest(".circo-link");
+  if (b) openDetail(b.dataset.key, true);
+});
+$("#detail").addEventListener("click", ev => { if (ev.target.closest("#close")) closeDetail(); });
+document.addEventListener("keydown", ev => { if (ev.key === "Escape" && !$("#detail").hidden) closeDetail(); });
+
+$("#nElus").textContent = DATA.filter(e => e.elu).length;
+renderChips();
+renderList();
+fitFrance();
+syncDots();
+</script>
+</body>
+</html>
