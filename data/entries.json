@@ -756,5 +756,23 @@
       "https://www.20minutes.fr/politique/4106636-20240822-deputee-lfi-ironise-collaborateur-harceleur-journalistes-fait-allumer",
       "https://www.lejdd.fr/politique/il-ironise-sur-ma-famille-deportee-le-journaliste-lucas-jakubowicz-accuse-un-collaborateur-dersilia-soudais-de-harcelement-148727"
     ]
+  },
+  {
+    "dep": "14",
+    "circo": 1,
+    "name": "Emma FOURREAU",
+    "elu": true,
+    "role": "Candidate LFI-NFP en 2024, battue au second tour · eurodéputée LFI depuis juillet 2024",
+    "cats": [
+      "complaisant avec les dictatures"
+    ],
+    "paras": [
+      "Le 23 janvier 2025, elle vote contre la résolution du Parlement européen réclamant « la libération immédiate et inconditionnelle » de l'écrivain franco-algérien Boualem Sansal, emprisonné en Algérie depuis novembre 2024. Le texte est adopté par 533 voix contre 24.",
+      "Trois autres eurodéputés LFI, dont Rima Hassan, votent également contre, tandis que Manon Aubry et Younous Omarjee s'abstiennent. Rima Hassan explique alors que « ne pas voter ce texte ce n'est pas s'opposer à la libération de M. Sansal (...) c'est s'opposer à l'instrumentalisation qui est faite de son cas »."
+    ],
+    "sources": [
+      "https://www.lejdd.fr/Societe/linsoumise-rima-hassan-vote-contre-la-resolution-du-parlement-europeen-demandant-la-liberation-de-boualem-sansal-154194",
+      "https://www.lefigaro.fr/politique/rima-hassan-vote-contre-la-resolution-du-parlement-europeen-demandant-la-liberation-de-boualem-sansal-20250123"
+    ]
   }
 ]
