@@ -41,7 +41,8 @@
       "https://www.franceinfo.fr/faits-divers/police/on-vous-resume-l-affaire-qui-implique-le-depute-lfi-sebastien-delogu-poursuivi-pour-outrage-envers-des-policiers-marseillais_8166260.html",
       "https://presidence.assemblee-nationale.fr/activites/presse/38781",
       "https://fr.euronews.com/my-europe/2026/08/28/altercation-avec-des-policiers-sebastien-delogu-sorti-de-garde-a-vue-une-enquete-ouverte"
-    ]
+    ],
+    "depute": true
   },
   {
     "dep": "84",
@@ -70,7 +71,8 @@
       "https://www.ici.fr/provence-alpes-cote-d-azur/vaucluse-84/avignon/dissolution-de-la-jeune-garde-le-but-c-est-que-l-antifascisme-perdure-reagit-raphael-arnault-3024000",
       "https://www.20min.ch/fr/story/france-un-elu-veut-dezinguer-les-supremacistes-le-rn-porte-plainte-103441783",
       "https://www.franceinfo.fr/faits-divers/mort-de-quentin-militant-identitaire-agresse-a-lyon/mort-de-quentin-deranque-l-assistant-parlementaire-du-depute-insoumis-raphael-arnault-mis-en-examen-pour-complicite-de-meurtre_7817069.html"
-    ]
+    ],
+    "depute": true
   },
   {
     "dep": "93",
@@ -93,7 +95,8 @@
       "https://presidence.assemblee-nationale.fr/activites/presse/40737",
       "https://www.sudouest.fr/politique/jean-luc-melenchon/les-athletes-israeliens-pas-les-bienvenus-aux-jo-les-propos-du-depute-lfi-thomas-portes-creent-la-polemique-20643294.php",
       "https://www.timesofisrael.com/outrage-after-french-lawmaker-says-israeli-athletes-not-welcome-at-paris-olympics/"
-    ]
+    ],
+    "depute": true
   },
   {
     "dep": "93",
@@ -114,7 +117,8 @@
       "https://france3-regions.franceinfo.fr/occitanie/haute-garonne/toulouse/eurodepute-toulousain-manuel-bompard-condamne-7000-euros-amende-proces-perquisitions-lfi-1760181.html",
       "https://www.france24.com/fr/info-en-continu/20211104-comptes-de-campagne-2017-le-d%C3%A9put%C3%A9-lfi-bastien-lachaud-mis-en-examen-notamment-pour-escroquerie",
       "https://www.france24.com/fr/info-en-continu/20260601-comptes-de-campagne-2017-de-lfi-fin-des-investigations-%C3%A0-paris"
-    ]
+    ],
+    "depute": true
   },
   {
     "dep": "13",
@@ -131,7 +135,8 @@
     "sources": [
       "https://france3-regions.franceinfo.fr/occitanie/haute-garonne/toulouse/eurodepute-toulousain-manuel-bompard-condamne-7000-euros-amende-proces-perquisitions-lfi-1760181.html",
       "https://www.publicsenat.fr/actualites/politique/melenchon-condamne-a-trois-mois-avec-sursis-pour-la-perquisition-houleuse-a-lfi"
-    ]
+    ],
+    "depute": true
   },
   {
     "dep": "44",
@@ -152,7 +157,8 @@
       "https://lcp.fr/actualites/frais-de-mandat-le-bureau-de-l-assemblee-prononce-l-exclusion-temporaire-des-deputes",
       "https://presidence.assemblee-nationale.fr/activites/presse/43468",
       "https://france3-regions.franceinfo.fr/pays-de-la-loire/loire-atlantique/nantes/affaire-andy-kerbrat-ce-que-l-on-sait-de-la-plainte-pour-detournement-de-fonds-visant-le-depute-3062512.html"
-    ]
+    ],
+    "depute": true
   },
   {
     "dep": "75",
@@ -182,7 +188,8 @@
       "https://www.lejdd.fr/politique/la-deputee-lfi-sophia-chikirou-accusee-de-faire-lapologie-du-terrorisme-et-detre-le-porte-voix-de-la-haine-des-juifs-148177",
       "https://www.tf1info.fr/politique/assemblee-nationale-sophia-chikirou-une-deputee-insoumise-lfi-dans-la-tourmente-2271831.html",
       "https://www.lejdd.fr/politique/virez-les-fascistes-des-medias-linquietante-diatribe-de-sophia-chikirou-contre-les-journalistes-167214"
-    ]
+    ],
+    "depute": true
   },
   {
     "dep": "75",
@@ -201,7 +208,8 @@
       "https://lcp.fr/actualites/propos-de-daniele-obono-lfi-sur-le-hamas-gerald-darmanin-saisit-le-procureur-de-la",
       "https://www.franceinfo.fr/monde/proche-orient/israel-palestine/attaque-contre-israel-le-ministre-de-l-interieur-saisit-la-justice-pour-apologie-du-terrorisme-apres-les-propos-de-la-deputee-daniele-obono-sur-le-hamas_6127311.html",
       "https://fr.timesofisrael.com/apologie-du-terrorisme-la-procedure-visant-mathilde-panot-classee-sans-suite/"
-    ]
+    ],
+    "depute": true
   },
   {
     "dep": "94",
@@ -227,7 +235,8 @@
       "https://www.bfmtv.com/politique/la-france-insoumise/je-ne-veux-pas-repondre-mathilde-panot-refuse-de-qualifier-nicolas-maduro-de-dictateur_AV-202601060497.html",
       "https://www.lejdd.fr/politique/venezuela-nous-demandons-le-retour-de-nicolas-maduro-martele-la-deputee-lfi-mathilde-panot-165595",
       "https://www.franceinfo.fr/faits-divers/police/aussi-dangereux-que-ridicule-tolle-politique-general-apres-la-proposition-de-la-france-insoumise-de-desarmer-la-police-municipale_7362423.html"
-    ]
+    ],
+    "depute": true
   },
   {
     "dep": "59",
@@ -251,7 +260,8 @@
       "https://www.franceinfo.fr/societe/antisemitisme/que-sont-les-dragons-celestes-qui-valent-au-depute-lfi-david-guiraud-d-etre-accuse-d-antisemitisme_6278514.html",
       "https://www.20minutes.fr/politique/4068764-20240102-invoquant-dragons-celestes-one-piece-depute-lfi-david-guiraud-fait-jeu-antisemites",
       "https://www.lefigaro.fr/politique/emeutes-un-depute-insoumis-n-appelle-pas-au-calme-dans-les-quartiers-20230629"
-    ]
+    ],
+    "depute": true
   },
   {
     "dep": "35",
@@ -270,7 +280,8 @@
       "https://www.lejdd.fr/politique/israeliens-lynches-amsterdam-bruno-retailleau-saisit-la-justice-pour-apologie-du-crime-contre-la-deputee-lfi-marie-mesmeur-151550",
       "https://www.letelegramme.fr/ille-et-vilaine/rennes-35000/les-propos-polemiques-de-la-deputee-rennaise-marie-mesmeur-continuent-de-faire-des-vagues-6700831.php",
       "https://www.lemonde.fr/societe/article/2024/11/10/violences-a-amsterdam-bruno-retailleau-signale-le-tweet-d-une-deputee-lfi-a-la-justice_6385878_3224.html"
-    ]
+    ],
+    "depute": true
   },
   {
     "dep": "972",
@@ -288,7 +299,8 @@
       "https://www.huffingtonpost.fr/politique/article/mansour-kamardine-demande-des-excuses-publiques-a-jean-philippe-nilor-qui-l-a-traite-de-negre-de-maison_227454.html",
       "https://www.zinfos974.com/mansour-kamardine-denonce-des-insultes-publiques-a-caractere-racial-de-la-part-du-depute-lfi-jean-philippe-nilor/",
       "https://www.marianne.net/politique/gauche/negre-de-maison-quand-le-depute-lfi-jean-philippe-nilor-insulte-le-depute-lr-mansour-kamardine"
-    ]
+    ],
+    "depute": true
   },
   {
     "dep": "93",
@@ -310,7 +322,8 @@
       "https://france3-regions.franceinfo.fr/paris-ile-de-france/paris/la-police-tue-le-depute-lfi-aly-diouara-vise-par-une-plainte-du-prefet-de-police-de-paris-3205262.html",
       "https://www.lejdd.fr/politique/glucksmann-candidat-sioniste-des-tweets-daly-diouara-pointes-du-doigt-apres-son-investiture-par-lfi-146462",
       "https://www.franceinfo.fr/elections/legislatives-2024-qui-est-aly-diouara-le-candidat-investi-par-lfi-en-seine-saint-denis_6621576.html"
-    ]
+    ],
+    "depute": true
   },
   {
     "dep": "95",
@@ -331,7 +344,8 @@
       "https://www.ici.fr/infos/faits-divers-justice/niort-le-depute-aurelien-tache-condamne-a-5-000-euros-d-amende-apres-avoir-insulte-des-policiers-1662734845",
       "https://france3-regions.franceinfo.fr/paris-ile-de-france/val-d-oise/message-diffamatoire-injurieux-et-mensonger-le-depute-du-val-d-oise-aurelien-tache-vise-par-une-plainte-d-un-prefet-3204347.html",
       "https://www.franceinfo.fr/politique/la-france-insoumise/la-police-tue-toujours-le-ministre-de-l-interieur-porte-plainte-pour-diffamation-contre-quatre-elus-lfi_7584902.html"
-    ]
+    ],
+    "depute": true
   },
   {
     "dep": "92",
@@ -348,7 +362,8 @@
     "sources": [
       "https://www.franceinfo.fr/economie/retraite/reforme-des-retraites/reforme-des-retraites-le-depute-lfi-aurelien-saintoul-traite-olivier-dussopt-d-imposteur-et-d-assassin-provoquant-une-interruption-de-seance-a-l-assemblee_5657015.html",
       "https://www.assemblee-nationale.fr/dyn/16/comptes-rendus/seance/session-ordinaire-de-2022-2023/premiere-seance-du-lundi-13-fevrier-2023.pdf"
-    ]
+    ],
+    "depute": true
   },
   {
     "dep": "91",
@@ -367,7 +382,8 @@
       "https://lcp.fr/actualites/sanctions-a-l-assemblee-plusieurs-deputes-sanctionnes-sur-fond-de-tensions-autour-du",
       "https://presidence.assemblee-nationale.fr/activites/presse/47750",
       "https://www.franceinfo.fr/politique/parlement-francais/assemblee-nationale/les-deputes-rn-laurent-jacobelli-et-frederic-pierre-vos-et-le-lfi-antoine-leaument-sanctionnes-pour-leur-comportement-a-l-assemblee-nationale_7813967.html"
-    ]
+    ],
+    "depute": true
   },
   {
     "dep": "59",
@@ -387,7 +403,8 @@
       "https://lcp.fr/actualites/incident-de-seance-a-l-assemblee-sanction-prononcee-contre-le-depute-ugo-bernalicis",
       "https://www.franceinfo.fr/politique/parlement-francais/assemblee-nationale/le-depute-lfi-ugo-bernalicis-sanctionne-d-un-rappel-a-l-ordre-et-d-un-retrait-de-25-de-son-indemnite-par-yael-braun-pivet_6217752.html",
       "https://www.assemblee-nationale.fr/dyn/16/comptes-rendus/seance/session-ordinaire-de-2023-2024/seance-du-mercredi-13-decembre-2023"
-    ]
+    ],
+    "depute": true
   },
   {
     "dep": "94",
@@ -426,7 +443,8 @@
       "https://www.franceinfo.fr/societe/harcelement-sexuel/le-depute-lfi-hugo-prevost-accuse-de-violences-sexuelles-annonce-sa-demission_6828245.html",
       "https://france3-regions.franceinfo.fr/auvergne-rhone-alpes/isere/grenoble/des-faits-graves-a-caractere-sexuel-le-depute-hugo-prevost-exclu-du-groupe-lfi-a-l-assemblee-nationale-3043318.html",
       "https://www.placegrenet.fr/2024/10/09/accuse-de-faits-graves-a-caractere-sexuel-le-depute-de-lisere-hugo-prevost-annonce-sa-demission/637771"
-    ]
+    ],
+    "depute": true
   },
   {
     "dep": "95",
@@ -444,7 +462,8 @@
       "https://www.lejdd.fr/politique/promotion-canape-les-propos-misogynes-du-depute-lfi-carlos-bilongo-contre-rachida-dati-suscitent-un-tolle-165342",
       "https://actu.orange.fr/france/je-regrette-les-propos-sexistes-que-j-ai-employes-le-depute-carlos-martens-bilongo-s-excuse-apres-sa-sortie-sur-rachida-dati-magic-CNT000002mneEh.html",
       "https://www.lalibre.be/international/europe/2025/12/27/rachida-dati-obtient-les-excuses-dun-depute-lfi-apres-une-attaque-sexiste-RB6XDGAXKREC3J4OFECRDIV7ZA/"
-    ]
+    ],
+    "depute": true
   },
   {
     "dep": "69",
@@ -519,7 +538,8 @@
     "sources": [
       "https://france3-regions.francetvinfo.fr/auvergne-rhone-alpes/isere/grenoble/grenoble-eric-piolle-et-elisa-martin-mis-en-cause-par-un-ancien-conseiller-du-maire-le-parquet-ouvre-une-enquete-2981138.html",
       "https://www.leparisien.fr/politique/eric-piolle-suspendu-de-son-mandat-de-porte-parole-des-ecologistes-en-raison-dune-enquete-pour-concussion-et-recel-de-delit-16-09-2025-CWYRLIK7FNAJVKCTV7TKWS2VZU.php"
-    ]
+    ],
+    "depute": true
   },
   {
     "dep": "95",
@@ -542,7 +562,8 @@
       "https://www.marianne.net/politique/du-harcelement-dune-extreme-gravite-la-journaliste-nora-bussigny-porte-plainte-contre-le-depute-lfi-paul-vannier",
       "https://www.nouvelobs.com/societe/20251206.OBS110409/tout-comprendre-a-la-polemique-du-sondage-de-l-ifop-sur-les-musulmans-de-france.html",
       "https://www.franceinfo.fr/politique/la-france-insoumise/la-police-tue-toujours-le-ministre-de-l-interieur-porte-plainte-pour-diffamation-contre-quatre-elus-lfi_7584902.html"
-    ]
+    ],
+    "depute": true
   },
   {
     "dep": "77",
@@ -568,7 +589,8 @@
       "https://www.20minutes.fr/politique/4106636-20240822-deputee-lfi-ironise-collaborateur-harceleur-journalistes-fait-allumer",
       "https://www.lejdd.fr/politique/il-ironise-sur-ma-famille-deportee-le-journaliste-lucas-jakubowicz-accuse-un-collaborateur-dersilia-soudais-de-harcelement-148727",
       "https://www.franceinfo.fr/politique/la-france-insoumise/la-police-tue-toujours-le-ministre-de-l-interieur-porte-plainte-pour-diffamation-contre-quatre-elus-lfi_7584902.html"
-    ]
+    ],
+    "depute": true
   },
   {
     "dep": "93",
@@ -587,7 +609,8 @@
       "https://www.assemblee-nationale.fr/dyn/16/scrutins/652",
       "https://www.lejdd.fr/Politique/jerome-legavre-un-depute-trotskiste-contre-laide-en-ukraine-4148128",
       "https://www.huffingtonpost.fr/politique/article/volodymyr-zelensky-n-etait-pas-le-bienvenu-en-france-pour-le-depute-jerome-legavre-lfi_235144.html"
-    ]
+    ],
+    "depute": true
   },
   {
     "label": "National (hors circonscription)",
@@ -702,7 +725,8 @@
     "sources": [
       "https://www.assemblee-nationale.fr/dyn/16/comptes-rendus/seance/session-ordinaire-de-2022-2023/premiere-seance-du-lundi-12-juin-2023",
       "https://www.franceinfo.fr/economie/retraite/reforme-des-retraites/direct-reforme-des-retraites-la-motion-de-censure-de-la-nupes-sera-debattue-a-l-assemblee-nationale-a-partir-de-16-heures_5883275.html"
-    ]
+    ],
+    "depute": true
   },
   {
     "dep": "75",
@@ -720,7 +744,8 @@
     "sources": [
       "https://www.publicsenat.fr/actualites/politique/lfi-refuse-daccrediter-le-journaliste-du-monde-co-auteur-du-livre-la-meute-a-son-universite-dete",
       "https://www.franceinfo.fr/politique/la-france-insoumise/la-france-insoumise-interdit-ses-universites-d-ete-a-un-journaliste-du-monde-co-auteur-du-livre-la-meute_7447420.html"
-    ]
+    ],
+    "depute": true
   },
   {
     "label": "Parlement européen (hors circonscription)",
