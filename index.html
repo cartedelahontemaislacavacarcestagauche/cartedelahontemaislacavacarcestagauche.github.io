@@ -107,6 +107,10 @@
   .sw input:checked + .track { background: var(--switch-on); }
   .sw input:checked + .track::after { transform: translateX(20px); }
 
+  .why { margin-top: 16px; font-size: 14px; color: var(--muted); }
+  .why summary { cursor: pointer; font-weight: 700; color: #333; }
+  .why p { margin: 8px 0 0; }
+
   hr { border: 0; border-top: 1px solid #e5e5e5; margin: 24px 0 0; }
 
   .entry { margin-top: 16px; padding-bottom: 24px; border-bottom: 1px solid var(--line); }
@@ -178,11 +182,17 @@
         <span>Afficher uniquement les <span id="nElus"></span> élu(e)s</span>
       </label>
 
+      <details class="why">
+        <summary>Pourquoi moins de fiches que la carte du RN ?</summary>
+        <p>Les député(e)s LFI élu(e)s en 2024 ont été passé(e)s en revue un par un. Les candidat(e)s battu(e)s et les suppléant(e)s, eux, n'apparaissent que lorsque la presse avait déjà rapporté une polémique à leur sujet.</p>
+        <p>Or, contrairement aux candidat(e)s du RN, dont les réseaux sociaux ont été épluchés par plusieurs rédactions pendant la campagne de 2024, aucune enquête de presse comparable n'a, à notre connaissance, passé au crible ceux des candidat(e)s LFI.</p>
+      </details>
+
       <hr>
       <div id="list"></div>
 
       <div class="about">
-        <p><b>Méthode.</b> Sur le modèle de la <a href="https://cartedelahonte.github.io/" target="_blank" rel="noopener noreferrer">Carte de la honte</a> consacrée au RN, avec des catégories adaptées à LFI, appliquées aux candidat(e)s investi(e)s par La France insoumise aux législatives (titulaires et suppléant(e)s, élu(e)s ou non) et à quelques responsables nationaux du mouvement. Chaque fiche ne reprend que des faits publiés par la presse, avec ses sources.</p>
+        <p><b>Méthode.</b> Sur le modèle de la <a href="https://cartedelahonte.github.io/" target="_blank" rel="noopener noreferrer">Carte de la honte</a> consacrée au RN, avec des catégories adaptées à LFI : député(e)s LFI élu(e)s en 2024, examiné(e)s un par un ; candidat(e)s battu(e)s et suppléant(e)s, seulement lorsqu'une polémique avait déjà été rapportée par la presse ; et quelques responsables nationaux du mouvement. Chaque fiche ne reprend que des faits publiés par la presse, avec ses sources.</p>
         <p>Une enquête, une plainte ou une mise en examen n'est pas une condamnation : les personnes concernées sont présumées innocentes tant qu'elles n'ont pas été définitivement jugées. Situation judiciaire à jour au 6 octobre 2026 d'après les sources citées.</p>
         <p>Contours des circonscriptions : data.gouv.fr (Licence Ouverte 2.0).</p>
       </div>
