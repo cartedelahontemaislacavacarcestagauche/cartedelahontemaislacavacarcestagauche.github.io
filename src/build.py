@@ -130,6 +130,7 @@ else:
               out_path.parent / "social-card.png",
               [f"{n} preuves que LFI", "est toujours..."],
               ", ".join(present) + ", voire tout à la fois.",
-              f"{pct(n_lfi, LFI_DEPUTES_2024)} % des député(e)s LFI épinglé(e)s, contre {pct(RN_ELUS_CARTE, RN_DEPUTES_2024)} % pour le RN")
+              f"{pct(n_lfi, LFI_DEPUTES_2024)} % des député(e)s LFI épinglé(e)s, contre {pct(RN_ELUS_CARTE, RN_DEPUTES_2024)} % pour le RN",
+              tagline="*mais ça va car c’est à gauche")
     print("image d'aperçu :", out_path.parent / "social-card.png")
 print("catégories présentes :", present)

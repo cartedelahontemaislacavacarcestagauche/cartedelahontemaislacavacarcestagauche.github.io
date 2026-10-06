@@ -13,7 +13,7 @@ INK = (17, 17, 17)
 RED = (232, 69, 60)
 
 AVENIR = "/System/Library/Fonts/Avenir Next.ttc"
-HEAVY, BOLD, MEDIUM = 8, 0, 5
+HEAVY, BOLD, MEDIUM, DEMI_ITALIC = 8, 0, 5, 3
 
 
 def font(face, size):
@@ -31,7 +31,7 @@ def rings(geom):
         yield poly[0]
 
 
-def make(entries, circos, depts, colors, mix, out_path, title_lines, cats_text, stat_text):
+def make(entries, circos, depts, colors, mix, out_path, title_lines, cats_text, stat_text, tagline=""):
     img = Image.new("RGB", (W * S, H * S), SEA)
     d = ImageDraw.Draw(img)
 
@@ -88,6 +88,10 @@ def make(entries, circos, depts, colors, mix, out_path, title_lines, cats_text, 
     d.text((x - 6 * S + 26 * S - tb[0], by + 17 * S - tb[1]), "honte", font=honte, fill=INK)
 
     y = by + bh + 18 * S
+    if tagline:
+        # Petite mention sous « honte », façon astérisque de bas de page.
+        d.text((x + 2 * S, by + bh + 8 * S), tagline, font=font(DEMI_ITALIC, 21), fill=(60, 60, 60))
+        y += 30 * S
     for line in title_lines:
         d.text((x, y), line, font=font(BOLD, 29), fill=INK)
         y += 37 * S
