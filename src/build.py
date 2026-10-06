@@ -13,9 +13,9 @@ out_path = Path(sys.argv[2]) if len(sys.argv) > 2 else ROOT / "index.html"
 date_txt = sys.argv[3] if len(sys.argv) > 3 else "6 octobre 2026"  # date de mise à jour affichée
 
 CATS = [
-    "anti-police", "anti-presse", "bordélisateur", "complaisant avec le Hamas",
+    "violent", "anti-police", "anti-presse", "bordélisateur", "complaisant avec le Hamas",
     "complaisant avec les dictatures", "complotiste", "raciste et antisémite", "sexiste",
-    "soupçonné de fraude", "un peu de tout", "violent",
+    "soupçonné de fraude", "un peu de tout",
 ]
 
 # Comparaison avec la carte du RN (bloc sous le titre et note « Pourquoi… »).

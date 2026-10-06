@@ -246,6 +246,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
 const CATS = [
+  { k: "violent", c: "rgba(36,114,48,1)" },
   { k: "anti-police", c: "rgba(182,46,114,1)" },
   { k: "anti-presse", c: "rgba(208,197,95,1)" },
   { k: "bordélisateur", c: "rgba(102,204,0,1)" },
@@ -256,7 +257,6 @@ const CATS = [
   { k: "sexiste", c: "rgba(209,112,56,1)" },
   { k: "soupçonné de fraude", c: "rgba(204,17,0,1)" },
   { k: "un peu de tout", c: "rgba(59,19,19,1)" },
-  { k: "violent", c: "rgba(36,114,48,1)" },
 ];
 const MIX = "un peu de tout";
 const COLOR = Object.fromEntries(CATS.map(c => [c.k, c.c]));
@@ -423,7 +423,9 @@ function entryHTML(e, inDetail) {
   const head = inDetail ? "" : `<h2>${hasGeo
     ? `<button class="circo-link" data-key="${esc(e.key)}" data-id="${e.id}">${esc(e.label)}</button>`
     : `<span class="circo-plain">${esc(e.label)}</span>`}</h2>`;
-  const tags = (e.cats.length > 1 ? [MIX, ...e.cats] : e.cats).map(k => chipHTML(k)).join("");
+  // Même ordre que la liste des catégories : « violent » d'abord, « un peu de tout » en dernier.
+  const ordered = [...e.cats].sort((a, b) => CATS.findIndex(c => c.k === a) - CATS.findIndex(c => c.k === b));
+  const tags = (e.cats.length > 1 ? [...ordered, MIX] : ordered).map(k => chipHTML(k)).join("");
   return `<article class="entry" id="e-${e.id}">
     ${head}
     <div class="tags">${tags}</div>
