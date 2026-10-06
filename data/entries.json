@@ -424,7 +424,8 @@
       "https://www.assemblee-nationale.fr/dyn/16/comptes-rendus/seance/session-ordinaire-de-2023-2024/premiere-seance-du-mardi-04-juin-2024.pdf",
       "https://www.liberation.fr/checknews/rachel-keke-elue-sous-letiquette-nupes-a-t-elle-partage-des-contenus-dextreme-droite-sur-facebook-20220622_WQPAINOXL5CSVJ4Q4EDSJ4QHYI/",
       "https://www.franceinfo.fr/elections/legislatives/la-deputee-rachel-keke-cible-d-attaques-sur-les-reseaux-sociaux-repond-aux-accusations_5215981.html"
-    ]
+    ],
+    "battu": true
   },
   {
     "dep": "38",
@@ -501,7 +502,8 @@
       "https://www.franceinfo.fr/elections/legislatives/legislatives-2024-la-france-insoumise-retire-son-investiture-a-un-candidat-pour-des-messages-antisemites_6629970.html",
       "https://france3-regions.franceinfo.fr/centre-val-de-loire/loir-cher/blois/j-ai-traite-un-pote-juif-de-youpin-la-france-insoumise-retire-son-investiture-a-un-candidat-aux-legislatives-apres-des-tweets-antisemites-2994755.html",
       "https://www.lejdd.fr/politique/tweets-antisemites-lfi-retire-son-investiture-au-candidat-aux-legislatives-reda-belkadi-146845"
-    ]
+    ],
+    "battu": true
   },
   {
     "dep": "11",
@@ -521,7 +523,8 @@
       "https://www.lefigaro.fr/elections/presidentielles/2017/04/21/35003-20170421ARTFIG00109-philippe-poutou-suscite-un-tolle-en-reclamant-le-desarmement-des-policiers.php",
       "https://www.ici.fr/infos/politique/qualifie-de-porte-parole-du-hamas-en-france-philippe-poutou-et-le-npa-accuses-d-apologie-du-terrorisme-3908118",
       "https://lafranceinsoumise.fr/2024/06/14/candidats-legislatives-2024/"
-    ]
+    ],
+    "battu": true
   },
   {
     "dep": "38",
@@ -780,7 +783,8 @@
     "sources": [
       "https://www.20minutes.fr/politique/4106636-20240822-deputee-lfi-ironise-collaborateur-harceleur-journalistes-fait-allumer",
       "https://www.lejdd.fr/politique/il-ironise-sur-ma-famille-deportee-le-journaliste-lucas-jakubowicz-accuse-un-collaborateur-dersilia-soudais-de-harcelement-148727"
-    ]
+    ],
+    "battu": true
   },
   {
     "dep": "14",
@@ -798,6 +802,7 @@
     "sources": [
       "https://www.lejdd.fr/Societe/linsoumise-rima-hassan-vote-contre-la-resolution-du-parlement-europeen-demandant-la-liberation-de-boualem-sansal-154194",
       "https://www.lefigaro.fr/politique/rima-hassan-vote-contre-la-resolution-du-parlement-europeen-demandant-la-liberation-de-boualem-sansal-20250123"
-    ]
+    ],
+    "battu": true
   }
 ]

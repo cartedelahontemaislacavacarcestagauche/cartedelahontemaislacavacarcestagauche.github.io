@@ -17,7 +17,7 @@ Chaque fiche ne reprend que des faits publiés par la presse, avec ses sources, 
 python3 src/build.py
 ```
 
-Le script vérifie que chaque catégorie existe et que chaque fiche a au moins une source.
+Le script vérifie que chaque catégorie existe et que chaque fiche a au moins une source. Il régénère aussi `social-card.png`, l'image d'aperçu affichée par Telegram, WhatsApp ou X (nécessite Pillow et la police Avenir Next de macOS).
 
 ## Données
 
