@@ -75,7 +75,7 @@ for i, e in enumerate(entries):
         label = e["label"]
     data.append({
         "id": i, "key": key, "label": label, "name": e["name"], "role": e.get("role", ""),
-        "cats": e["cats"], "paras": e["paras"], "sources": e["sources"], "elu": bool(e.get("elu")),
+        "cats": e["cats"], "paras": e["paras"], "sources": e["sources"], "elu": bool(e.get("depute")),
         "_sort": (1 if not key else 0, fold(label.split(",")[0]), circo or 0, fold(e["name"])),
     })
 
@@ -114,7 +114,7 @@ html = (html.replace("/*__DATA__*/[]", dump(data))
             .replace("__DESC__", desc.replace('"', "&quot;"))
             .replace("__DATE__", date_txt))
 out_path.write_text(html)
-print(f"{out_path} : {n} fiches, {sum(d['elu'] for d in data)} élu(e)s, {len(geo)} circonscriptions, {len(html)//1024} Ko")
+print(f"{out_path} : {n} fiches, {sum(d['elu'] for d in data)} député(e)s élu(e)s, {len(geo)} circonscriptions, {len(html)//1024} Ko")
 print(f"député(e)s 2024 : LFI {n_lfi}/{LFI_DEPUTES_2024} = {pct(n_lfi, LFI_DEPUTES_2024)} % · RN {RN_ELUS_CARTE}/{RN_DEPUTES_2024} = {pct(RN_ELUS_CARTE, RN_DEPUTES_2024)} %")
 print(f"battu(e)s 2024 : LFI {nb_lfi}/{LFI_BATTUS_2024} = {pct(nb_lfi, LFI_BATTUS_2024)} % · RN {RN_BATTUS_CARTE}/{RN_BATTUS_2024} = {pct(RN_BATTUS_CARTE, RN_BATTUS_2024)} %")
 

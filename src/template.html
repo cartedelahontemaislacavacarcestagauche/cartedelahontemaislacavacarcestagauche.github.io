@@ -67,7 +67,7 @@
   h1 { font-size: 1.15rem; font-weight: 700; line-height: 1.2; margin: 0 0 16px; }
   @media (min-width: 768px) { h1 { font-size: 3rem; font-weight: 400; line-height: 1.08; margin-bottom: 24px; } }
 
-  .stat { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .stat { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 16px; }
   .stat-item {
     display: flex; flex-direction: column; gap: 2px; padding: 8px 10px;
     border-radius: 8px; background: #f4f4f5; border-left: 5px solid;
@@ -83,8 +83,7 @@
     .stat .pct { font-size: 2.25rem; }
     .stat .lbl { font-size: 13px; }
   }
-  .stat-note { margin: 6px 0 16px; font-size: 12px; color: var(--muted); }
-  @media (min-width: 768px) { .stat-note { margin-bottom: 20px; } }
+  .stat-note { margin: 6px 0 0; font-size: 12px; color: var(--muted); }
 
   .chips { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 24px; }
   @media (min-width: 768px) { .chips { gap: 8px; } }
@@ -197,18 +196,6 @@
     <div id="home">
       <h1><span id="total">__N__</span> preuves que LFI est toujours...</h1>
 
-      <div class="stat" aria-label="Part des député(e)s élu(e)s en 2024 qui ont une fiche">
-        <div class="stat-item lfi">
-          <span class="pct">__PCT_LFI__ %</span>
-          <span class="lbl">des député(e)s LFI élu(e)s en 2024 ont une fiche ici (__N_LFI__ sur __TOT_LFI__)</span>
-        </div>
-        <div class="stat-item rn">
-          <span class="pct">__PCT_RN__ %</span>
-          <span class="lbl">des député(e)s RN et alliés élu(e)s en 2024 en ont une sur la <a href="https://cartedelahonte.github.io/" target="_blank" rel="noopener noreferrer">carte du RN</a> (__N_RN__ sur __TOT_RN__)</span>
-        </div>
-      </div>
-      <p class="stat-note">Comparaison indicative : les catégories diffèrent d'une carte à l'autre.</p>
-
       <div class="chips" id="chips" role="group" aria-label="Filtrer par catégorie"></div>
 
       <div class="search">
@@ -220,8 +207,20 @@
       <label class="sw">
         <input type="checkbox" id="onlyElus" role="switch">
         <span class="track" aria-hidden="true"></span>
-        <span>Afficher uniquement les <span id="nElus"></span> élu(e)s</span>
+        <span>Afficher uniquement les <span id="nElus"></span> député(e)s élu(e)s</span>
       </label>
+
+      <div class="stat" aria-label="Part des député(e)s élu(e)s en 2024 qui ont une fiche">
+        <div class="stat-item lfi">
+          <span class="pct">__PCT_LFI__ %</span>
+          <span class="lbl">des député(e)s LFI élu(e)s en 2024 ont une fiche ici (__N_LFI__ sur __TOT_LFI__)</span>
+        </div>
+        <div class="stat-item rn">
+          <span class="pct">__PCT_RN__ %</span>
+          <span class="lbl">des député(e)s RN et alliés élu(e)s en 2024 en ont une sur la <a href="https://cartedelahonte.github.io/" target="_blank" rel="noopener noreferrer">carte du RN</a> (__N_RN__ sur __TOT_RN__)</span>
+        </div>
+      </div>
+      <p class="stat-note">Comparaison indicative : les catégories diffèrent d'une carte à l'autre.</p>
 
       <details class="why">
         <summary>Pourquoi __N__ fiches, contre 156 sur la carte du RN ?</summary>
